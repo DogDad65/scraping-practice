@@ -31,7 +31,7 @@ while url:  # Keep scraping until there are no more "Next" pages
     next_btn = soup.select_one('li.next > a')
     if next_btn:
         next_url = next_btn.get('href')
-        if next_url:
+        if isinstance(next_url, str):  # Ensure next_url is a string
             url = urljoin(base_url, next_url)  # Use urljoin to concatenate URLs safely
         else:
             url = None
